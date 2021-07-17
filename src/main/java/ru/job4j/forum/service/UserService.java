@@ -1,8 +1,6 @@
 package ru.job4j.forum.service;
 import org.springframework.stereotype.Service;
-import ru.job4j.forum.model.Post;
 import ru.job4j.forum.model.User;
-
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -10,7 +8,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Service
 public class UserService {
     private final HashMap<Integer, User> users = new HashMap<>();
-    private AtomicInteger key = new AtomicInteger(1);
+    private final AtomicInteger key = new AtomicInteger(1);
 
     public UserService() {
         users.put(1, User.of("username", "123"));
@@ -29,7 +27,7 @@ public class UserService {
     public User findByNameAndPassword(String name, String pass) {
         User user = null;
        for (User currentUser : users.values()) {
-           if(currentUser.getUsername().equals(name) && currentUser.getPassword().equals(pass)) {
+           if (currentUser.getUsername().equals(name) && currentUser.getPassword().equals(pass)) {
                user = currentUser;
            }
        }

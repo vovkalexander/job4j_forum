@@ -21,7 +21,7 @@ public class LoginControl {
     }
 
     @PostMapping("login")
-    public String logIn(@ModelAttribute("user") User user, Model model ) {
+    public String logIn(@ModelAttribute("user") User user, Model model) {
         if (users.findByNameAndPassword(user.getUsername(), user.getPassword()) == null) {
             model.addAttribute("errorMessage", "Username or Password is incorrect");
             return "redirect:/login";

@@ -1,8 +1,5 @@
 package ru.job4j.forum.model;
-
-import org.apache.tomcat.jni.Local;
 import org.springframework.format.annotation.DateTimeFormat;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -24,6 +21,7 @@ public class Post {
         post.created = date;
         return post;
     }
+
     public int getId() {
         return id;
     }
@@ -66,8 +64,12 @@ public class Post {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Post post = (Post) o;
         return id == post.id &&
                 Objects.equals(name, post.name) &&

@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import ru.job4j.forum.model.Post;
 import ru.job4j.forum.service.PostService;
 
-
 @Controller
 public class PostControl {
     private final PostService posts;
@@ -17,7 +16,7 @@ public class PostControl {
         this.posts = posts;
     }
 
-    @GetMapping( "/create")
+    @GetMapping("/create")
     public String create() {
         return "create";
     }

@@ -12,14 +12,13 @@ public class PostService    {
     private AtomicInteger key = new AtomicInteger(1);
 
     public PostService() {
-        posts.put(1, Post.of(1,"Продаю машину ладу 01.", "Б/У", LocalDate.now()));
+        posts.put(1, Post.of(1, "Продаю машину ладу 01.", "Б/У", LocalDate.now()));
 
     }
 
     public Collection<Post> getAll() {
       return this.posts.values();
     }
-
 
     public void addPost(Post post) {
         if (post.getId() == 0) {
@@ -31,7 +30,6 @@ public class PostService    {
     public Post findById(int id) {
         return this.posts.get(id);
     }
-
 
     public Collection<String> findAllComment(int id) {
        return this.findById(id).getDiscussion();
