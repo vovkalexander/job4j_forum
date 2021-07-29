@@ -1,41 +1,40 @@
 package ru.job4j.forum.service;
 import org.springframework.stereotype.Service;
 import ru.job4j.forum.model.Post;
+import ru.job4j.forum.store.PostRepository;
+
 import java.time.LocalDate;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.concurrent.atomic.AtomicInteger;
+import java.util.*;
 
 @Service
 public class PostService    {
-    private final HashMap<Integer, Post> posts = new HashMap<>();
-    private AtomicInteger key = new AtomicInteger(1);
+    private final PostRepository posts;
 
-    public PostService() {
-        posts.put(1, Post.of(1, "Продаю машину ладу 01.", "Б/У", LocalDate.now()));
-
+    public PostService(PostRepository posts) {
+        this.posts = posts;
     }
 
     public Collection<Post> getAll() {
-      return this.posts.values();
+        List<Post> rsl = new ArrayList<>();
+        posts.findAll().forEach(rsl::add);
+        return rsl;
     }
 
     public void addPost(Post post) {
-        if (post.getId() == 0) {
-            post.setId(this.key.incrementAndGet());
-        }
-        posts.put(post.getId(), post);
+        posts.save(post);
     }
 
     public Post findById(int id) {
-        return this.posts.get(id);
+        return this.posts.findById(id).get();
     }
 
     public Collection<String> findAllComment(int id) {
-       return this.findById(id).getDiscussion();
+        return this.findById(id).getDiscussion();
     }
 
     public void addComment(int id, String comment) {
-        this.findById(id).getDiscussion().add(comment);
+        Post post = posts.findPostById(id);
+        post.getDiscussion().add(comment);
+        posts.save(post);
     }
 }

@@ -1,17 +1,31 @@
 package ru.job4j.forum.model;
 import org.springframework.format.annotation.DateTimeFormat;
+import javax.persistence.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.*;
 
+@Entity
+@Table(name = "posts")
 public class Post {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
+    @Column(name = "description")
     private String desc;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate created;
-    private Set<String> discussion = new HashSet();
+    @ElementCollection
+    @CollectionTable (
+            name = "discussion",
+            joinColumns = @JoinColumn(name = "post_id"))
+    @Column(name = "discussion")
+    private Set<String> discussion = new HashSet<>();
+
+    public Post() {
+    }
 
     public static Post of(int id, String name, String desc, LocalDate date) {
         Post post = new Post();
@@ -54,13 +68,13 @@ public class Post {
         this.created = created;
     }
 
-    public Set<String> getDiscussion() {
-        return discussion;
-    }
+      public Set<String> getDiscussion() {
+          return discussion;
+     }
 
-    public void setDiscussion(Set<String> discussion) {
-        this.discussion = discussion;
-    }
+      public void setDiscussion(Set<String> discussion) {
+         this.discussion = discussion;
+      }
 
     @Override
     public boolean equals(Object o) {
