@@ -19,25 +19,26 @@
             </li>
         </ul>
     </div>
-
-<div style="color:red; font-weight: bold; margin: 30px 0px;">
-    ${errorMessage}
-</div>
-<form name='login' action="<c:url value='/login'/>" method='POST'>
-    <table>
-        <tr>
-            <td>UserName:</td>
-            <td><input type='text' name='username'></td>
-        </tr>
-        <tr>
-            <td>Password:</td>
-            <td><input type='password' name='password'/></td>
-        </tr>
-        <tr>
-            <td colspan='2'><input name="submit" type="submit" value="submit" /></td>
-        </tr>
-    </table>
-</form>
+    <c:if test="${not empty errorMessage}">
+        <div style="color:red; font-weight: bold; margin: 30px 0px;">
+                ${errorMessage}
+        </div>
+    </c:if>
+    <form name='login' action="<c:url value='/login'/>" method='POST'>
+        <table>
+            <tr>
+                <td>UserName:</td>
+                <td><input type='text' name='username'></td>
+            </tr>
+            <tr>
+                <td>Password:</td>
+                <td><input type='password' name='password'/></td>
+            </tr>
+            <tr>
+                <td colspan='2'><input name="submit" type="submit" value="submit" /></td>
+            </tr>
+        </table>
+    </form>
 </div>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->

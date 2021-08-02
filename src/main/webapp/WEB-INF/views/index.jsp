@@ -17,12 +17,12 @@
 <div class="container">
     <div class="row">
         <ul class="nav" >
-
-            <li class="nav-item">
-                <a class ="nav-link" href="<c:url value='/login'/>">Login as : ${user.username} </a>
-            </li>
             <li class="nav-item">
                 <a class ="nav-link" href="<c:url value='/create'/>">Добавить</a>
+            </li>
+
+            <li class="nav-item">
+                <a class ="nav-link" href="<c:url value='/logout'/>"><c:out value="${user.username}"/> | Выйти </a>
             </li>
 
         </ul>

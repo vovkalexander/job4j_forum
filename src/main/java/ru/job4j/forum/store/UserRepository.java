@@ -6,7 +6,6 @@ import org.springframework.data.repository.CrudRepository;
 import ru.job4j.forum.model.User;
 
 public interface UserRepository extends CrudRepository<User, Integer> {
- @Query("select u from User u  where  u.username like %:username%  and  u.password like %:password%")
-    User findByNameAndPassword(@Param("username") String username,
-                               @Param("password") String password);
+    @Query("select case when count(u) > 0 then true else false end from User u where u.username like %:username%")
+    Boolean existsByName(@Param("username") String name);
 }

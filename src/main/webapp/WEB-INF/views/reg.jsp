@@ -14,12 +14,15 @@
     <div class="row">
         <ul class="nav" >
             <li class="nav-item">
-                <a class ="nav-link" href="<c:url value='/index'/>">На главную страницу</a>
+                <a class ="nav-link" href="<c:url value='/login'/>">Войти в аккаунт</a>
             </li>
-
         </ul>
     </div>
-</div>
+<c:if test="${not empty errorMessage}">
+    <div style="color:red; font-weight: bold; margin: 30px 0px;">
+            ${errorMessage}
+    </div>
+</c:if>
 <div class="container">
 <form name='login' action="<c:url value='/reg'/>" method='POST'>
     <table>

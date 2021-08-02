@@ -2,31 +2,38 @@ package ru.job4j.forum.control;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import ru.job4j.forum.model.User;
-import ru.job4j.forum.service.UserService;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import org.springframework.security.core.Authentication;
 
 @Controller
 public class LoginControl {
-    private final UserService users;
-
-    public LoginControl(UserService users) {
-        this.users = users;
-    }
-
     @GetMapping("/login")
-    public String loginPage(Model model) {
+    public String loginPage(@RequestParam(value = "error", required = false) String error,
+                            @RequestParam(value = "logout", required = false) String logout,
+                            Model model) {
+        String errorMessage = null;
+        if (error != null) {
+            errorMessage = "Username or Password is incorrect !!";
+        }
+        if (logout != null) {
+            errorMessage = "You have been successfully logged out !!";
+        }
+        model.addAttribute("errorMessage", errorMessage);
         return "login";
     }
 
-    @PostMapping("login")
-    public String logIn(@ModelAttribute("user") User user, Model model) {
-        if (users.findByNameAndPassword(user.getUsername(), user.getPassword()) == null) {
-            model.addAttribute("errorMessage", "Username or Password is incorrect");
-            return "redirect:/login";
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    public String logoutPage(HttpServletRequest request, HttpServletResponse response) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth != null) {
+            new SecurityContextLogoutHandler().logout(request, response, auth);
         }
-        return "redirect:/index";
+        return "redirect:/login?logout=true";
     }
 }

@@ -24,7 +24,9 @@ public class UserService {
         users.save(user);
     }
 
-    public User findByNameAndPassword(String name, String pass) {
-        return users.findByNameAndPassword(name, pass);
+
+
+    public Boolean existsByName(String name) {
+        return users.existsByName(name);
     }
 }
