@@ -3,6 +3,15 @@ codecov: true
 language: java
 jdk:
   - openjdk11
+
+services:
+  - postgresql
+
+before_install:
+  - psql -c 'create database forum;' -U postgres
+
+    install: true
+
 # используем режим обычного пользователя для сборки проекта.
 sudo: false
 after_success:
@@ -14,6 +23,9 @@ notifications:
       -vovk.ag747@gmail.com
     on_success: never # default: change
     on_failure: always # default: always
+
+
+
 
     global:
       - CODECOV_TOKEN="fe4ab15b-c447-4efb-b2ed-9c92bda2fd99"
