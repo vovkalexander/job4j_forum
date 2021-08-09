@@ -1,7 +1,6 @@
 package ru.job4j.forum.control;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -28,15 +27,11 @@ public class PostControlTest {
     private MockMvc mockMvc;
 
     @MockBean
-    private Post post;
-
-    @MockBean
     private PostService posts;
 
     @Test
     @WithMockUser
     public void shouldReturnPostPage() throws Exception {
-        Mockito.when(posts.findById(8)).thenReturn(post);
         this.mockMvc.perform(get("/post").param("id", "8"))
                 .andDo(print())
                 .andExpect(status().isOk())
@@ -55,7 +50,6 @@ public class PostControlTest {
     @Test
     @WithMockUser
     public void shouldReturnEditPage() throws Exception {
-        Mockito.when(posts.findById(8)).thenReturn(post);
         this.mockMvc.perform(get("/edit").param("id", "8"))
                 .andDo(print())
                 .andExpect(status().isOk())
@@ -65,7 +59,6 @@ public class PostControlTest {
     @Test
     @WithMockUser
     public void shouldReturnCommentPage() throws Exception {
-        Mockito.when(posts.findById(8)).thenReturn(post);
         this.mockMvc.perform(get("/comment").param("id", "8"))
                 .andDo(print())
                 .andExpect(status().isOk())
@@ -89,7 +82,6 @@ public class PostControlTest {
     @WithMockUser
     public void shouldReturnDefaultComment() throws Exception {
         String comment = "Какую брать приманку";
-        Mockito.when(posts.findById(8)).thenReturn(post);
         this.mockMvc.perform(post("/add")
                         .param("id", "8")
                         .param("comment", comment))
