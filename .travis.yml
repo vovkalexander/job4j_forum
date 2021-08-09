@@ -13,8 +13,6 @@ before_install:
   - psql -c 'create database forum;' -U postgres
   install: true
 
-    install: true
-
 # используем режим обычного пользователя для сборки проекта.
 sudo: false
 after_success:
