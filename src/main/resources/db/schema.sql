@@ -5,6 +5,13 @@ Create table posts (
                        created date not null default now()
 );
 
+CREATE TABLE authorities (
+                             id serial primary key,
+                             authority VARCHAR(50) NOT NULL unique
+);
+
+insert into authorities (authority) values ('ROLE_USER');
+insert into authorities (authority) values ('ROLE_ADMIN');
 
 Create table users (
                        id serial primary key,
@@ -21,11 +28,6 @@ Create table discussion (
                             primary key(post_id, discussion )
 );
 
-CREATE TABLE authorities (
-                             id serial primary key,
-                             authority VARCHAR(50) NOT NULL unique
-);
 
 
-insert into authorities (authority) values ('ROLE_USER');
-insert into authorities (authority) values ('ROLE_ADMIN');
+
