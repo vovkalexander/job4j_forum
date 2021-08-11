@@ -3,15 +3,14 @@ codecov: true
 language: java
 jdk:
   - openjdk11
-  addons:
-    postgresql: "9.5"
+
 
   services:
     - postgresql
 
   before_install:
     - psql -c 'create database forum;' -U postgres
-    install: true
+
 # используем режим обычного пользователя для сборки проекта.
 sudo: false
 after_success:
