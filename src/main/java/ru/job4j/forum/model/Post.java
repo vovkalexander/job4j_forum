@@ -24,6 +24,10 @@ public class Post {
     @Column(name = "discussion")
     private Set<String> discussion = new HashSet<>();
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
     public Post() {
     }
 
@@ -75,6 +79,14 @@ public class Post {
       public void setDiscussion(Set<String> discussion) {
          this.discussion = discussion;
       }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     @Override
     public boolean equals(Object o) {

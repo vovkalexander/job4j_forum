@@ -12,8 +12,13 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
           integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     <title>Forum</title>
+    <style>
+        a {
+            font-size: 18px;
+        }
+    </style>
 </head>
-<body>
+<br>
 <div class="container">
     <div class="row">
         <ul class="nav" >
@@ -28,16 +33,17 @@
         </ul>
     </div>
 </div>
-
+<h4 class="text-center">Форум extreme</h4></br>
 <div class="container mt-3">
-    <div class="row">
-        <h4>Форум job4j</h4>
-    </div>
     <div class="row">
         <table class="table">
             <thead>
             <tr>
+                <th scope="col">№</th>
                 <th scope="col">Тема</th>
+                <th scope="col">Дата создания</th>
+                <th scope="col">Описания</th>
+                <th scope="col">Автор</th>
             </tr>
             </thead>
             <tbody>
@@ -53,13 +59,10 @@
                     </td>
                     <td><c:out value="${post.created}"/></td>
                     <td><c:out value="${post.desc}"/></td>
-                    <td><c:out value="${user.username}"/></td>
+                    <td><c:out value="${post.user.username}"/></td>
                 </tr>
 
             </c:forEach>
-            <tr>
-                <td><c:out value="${jopa}"/></td>
-            <tr>
             </tbody>
         </table>
     </div>

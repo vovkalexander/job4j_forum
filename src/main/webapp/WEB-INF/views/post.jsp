@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <title>Тема</title>
+
 </head>
 <body>
 <div class="container">
@@ -24,31 +25,31 @@
 </div>
 <div class="row">
     <div class="container">
-    <table class="table">
-        <thead>
-        <tr>
-            <th scope="col">Регистрация</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td><c:out value="${post.name}"/></td>
-        </tr>
-        <tr>
-            <td><c:out value="${post.desc}"/></td>
-        </tr>
-        <tr>
-            <td><c:out value="${post.created}"/></td>
-        </tr>
-        <tr><td>Коментарии</td></tr>
-        <tr><td>
-        <c:forEach var="comment" items="${post.discussion}">
+        <table class="table">
+            <thead>
             <tr>
-            <td><c:out value="${comment}"/></td>
-        </tr>
-        </c:forEach>
-        </tbody>
-    </table>
+                <th scope="col">Тема</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><c:out value="${post.name}"/></td>
+            </tr>
+            <tr>
+                <td><c:out value="${post.desc}"/></td>
+            </tr>
+            <tr>
+                <td><c:out value="${post.created}"/></td>
+            </tr>
+            <tr><td style="font-style: oblique">Коментарии:</td></tr>
+            <c:forEach var="comment" items="${post.discussion}">
+                <tr style="background-color: aliceblue; border-style:solid;
+                border-width: 1px; height: 50px; " >
+                    <td><c:out value="${comment}"/></td><br>
+                </tr>
+            </c:forEach>
+            </tbody>
+        </table>
         <div class="container">
             <div class="row">
                 <ul class="nav" >

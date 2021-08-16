@@ -1,4 +1,5 @@
 package ru.job4j.forum.control;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -6,14 +7,19 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.job4j.forum.model.Post;
+import ru.job4j.forum.model.User;
 import ru.job4j.forum.service.PostService;
+import ru.job4j.forum.service.UserService;
+import ru.job4j.forum.store.UserRepository;
 
 @Controller
 public class PostControl {
     private final PostService posts;
+    private final UserService users;
 
-    public PostControl(PostService posts) {
+    public PostControl(PostService posts, UserService users) {
         this.posts = posts;
+        this.users = users;
     }
 
     @GetMapping("/create")
@@ -23,6 +29,9 @@ public class PostControl {
 
     @PostMapping("/save")
     public String save(@ModelAttribute Post post) {
+        User user = users.findUser(SecurityContextHolder.getContext().getAuthentication()
+                .getName());
+        post.setUser(user);
         posts.addPost(post);
         return "redirect:/index";
     }

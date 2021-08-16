@@ -1,17 +1,7 @@
-Create table posts (
-                       id serial primary key,
-                       name varchar(2000),
-                       description text,
-                       created date not null default now()
-);
-
 CREATE TABLE authorities (
                              id serial primary key,
                              authority VARCHAR(50) NOT NULL unique
 );
-
-insert into authorities (authority) values ('ROLE_USER');
-insert into authorities (authority) values ('ROLE_ADMIN');
 
 Create table users (
                        id serial primary key,
@@ -20,6 +10,20 @@ Create table users (
                        enabled boolean default true,
                        authority_id int not null references authorities(id)
 );
+
+Create table posts (
+                       id serial primary key,
+                       name varchar(2000),
+                       description text,
+                       created date not null default now(),
+                       user_id int not null  references users(id)
+);
+
+
+
+insert into authorities (authority) values ('ROLE_USER');
+insert into authorities (authority) values ('ROLE_ADMIN');
+
 
 
 Create table discussion (

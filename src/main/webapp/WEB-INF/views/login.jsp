@@ -9,6 +9,26 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <title>Login</title>
+    <style>
+        #btn{
+            margin-top: 20%;
+            margin-left: 270%;
+        }
+        a {
+            margin-top: 5%;
+            margin-left: 80%;
+            font-size: 18px;
+        }
+
+        input[type=text]  {
+            border: 1px solid black;
+        }
+
+        input[type=password]  {
+            border: 1px solid black;
+        }
+
+    </style>
 </head>
 <body>
 <div class="container">
@@ -20,25 +40,32 @@
         </ul>
     </div>
     <c:if test="${not empty errorMessage}">
-        <div style="color:red; font-weight: bold; margin: 30px 0px;">
+        <div style="color:red; font-weight: bold; margin: 20px 0px 0px 100px;">
                 ${errorMessage}
         </div>
     </c:if>
+    <div class="container">
     <form name='login' action="<c:url value='/login'/>" method='POST'>
         <table>
             <tr>
-                <td>UserName:</td>
-                <td><input type='text' name='username'></td>
+                <div class="form-group">
+                <td>Пользователь:</td>
+                <td width="400px" ><input type='text' class="form-control" name='username'></td>
+                </div>
             </tr>
             <tr>
-                <td>Password:</td>
-                <td><input type='password' name='password'/></td>
+                <div class="form-group">
+                <td>Пароль:</td>
+                <td><input type='password' class="form-control"  name='password'/></td>
+                </div>
             </tr>
             <tr>
-                <td colspan='2'><input name="submit" type="submit" value="submit" /></td>
+
+                <td coml-5lspan='2'><input name="submit" type="submit" id="btn" class="btn btn-primary" value="submit" /></td>
             </tr>
         </table>
     </form>
+    </div>
 </div>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->

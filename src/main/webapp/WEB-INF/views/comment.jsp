@@ -10,32 +10,46 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <title>Create</title>
+    <style>
+        #btn {
+            margin-left: 260px;
+
+        }
+
+        input[type=textarea] {
+            border: 1px solid black;
+            width: 500px;
+            height: 120px;
+        }
+
+    </style>
 </head>
 <body>
 <div class="container mt-3">
-<div class="row">
-    <h4>Добавить комментарии</h4>
-</div>
-<div class="row">
-    <form name='login' action="<c:url value='/add'/>" method='POST'>
-        <table class="table">
-            <tbody>
-            <tr>
+    <div class="row">
+        <h4>Добавить комментарии</h4>
+    </div>
+    <div class="row">
+        <form name='login' action="<c:url value='/add'/>" method='POST'>
+            <table class="table">
+                <tbody>
+                <tr>
 
-                <input type="hidden" name="id" value="${post.id}"/>
-            </tr>
-            <tr>
-
-                <td>Комментарии:</td>
-                <td><input type='textarea' name='comment'></td>
-            </tr>
-            <tr>
-                <td colspan='2'><input name="submit" type="submit" class="btn btn-primary" value="Добавить" /></td>
-            </tr>
-        </table>
-        </tbody>
-    </form>
-</div>
+                    <input type="hidden" name="id" value="${post.id}"/>
+                </tr>
+                <tr>
+                    <div class="form-group">
+                        <td>Комментарии:</td>
+                        <td width="500px"><input type='textarea' class="form-control" name='comment'></td>
+                    </div>
+                </tr>
+                <tr>
+                    <td colspan='2'><input name="submit" id="btn" type="submit" class="btn btn-primary" value="Добавить" /></td>
+                </tr>
+            </table>
+            </tbody>
+        </form>
+    </div>
 </div>
 </div>
 <!-- Optional JavaScript -->
