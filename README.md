@@ -2,7 +2,7 @@
 
 
 # job4j_forum
-Доступ к проекту: https://nameless-garden-55927.herokuapp.com/
+Доступ к проекту: https://evening-dusk-40973.herokuapp.com/
 
 <p>
 Веб - приложение для общения между пользователями, путём размещения сообщений и комментарий
